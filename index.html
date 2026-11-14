@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+    
+        nav {
+            margin: 30px;
+        }
+    
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 15px;
+            font-size: 18px;
+        }
+    
+        .games {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        @keyframes appear {
+            from {
+                opacity:0;
+                transform: translateY(30px)
+            }
+            to {
+                opacity:1;
+                transform: translateY(0)
+                
+            }
+        } 
+        @keyframes neon {
+            from {
+                text-shadow: 0 0 5px purple;
+            }
+            to {
+                text-shadow: 0 0 25px violet;
+            }
+        }  
+
+        .game { 
+                                      
+            background: #191919;
+            border: 2px solid purple;
+            border-radius: 15px;
+            padding: 25px;
+            width: 200px;
+            transition: 0.3s;
+            animation: appear 0.8s ease;
+        }
+    
+        .game h3 {
+            color: violet;
+        }
+    
+        .game:hover {
+            transform: scale(1.05);
+            border-color: violet;
+            box-shadow: 0 0 15px violet;
+        }
+        .game img {
+            width: 100%;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .game a {
+            display: inline-block;
+            color: violet;
+            text-decoration: none;
+            border: 2px solid purple;
+            padding: 10px 25px;
+            border-radius: 10px;
+            margin-top: 15px;
+            transition: 0.3s;        
+        }
+        .game a:hover {
+            background: purple;
+            color: white;
+        }
+        header {
+            background: linear-gradient(90deg, #100020, #000000, #18002b);
+            padding: 45px 20px;
+            border-bottom: 2px solid purple;
+        }
+        header h1 {
+            font-size: 50px;
+            color: white;
+            animation: neon 2s infinite alternate;
+            margin-bottom: 10px;
+        }
+        header p {
+            color: #c9a0ff;
+            font-size: 20px;
+        }
+        nav a {
+            transition: 0.3s;
+        }
+        nav a:hover {
+            color: violet;
+            text-shadow: 0 0 10px violet;
+        }
+        .news {
+    margin-top: 60px;
+    padding: 30px;
+}
+
+.news-card {
+    background: #191919;
+    border: 2px solid purple;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px auto;
+    width: 60%;
+    transition: 0.3s;
+}
+
+.news-card:hover {
+    border-color: violet;
+    box-shadow: 0 0 15px violet;
+    transform: scale(1.03);
+}
+
+.news-card h3 {
+    color: violet;
+}
+
+.news-card span {
+    color: gray;
+}
+#search {
+    width: 300px;
+    padding: 15px;
+    background: #191919;
+    border: 2px solid purple;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+#search:focus {
+    border-color: violet;
+    box-shadow: 0 0 12px violet;
+}
+    </style>
+    
+    <title>мой первый сайт</title>    
+ </head>   
+
+ <body>
+    <header>
+    <h1>MY GAMING</h1>
+    <p>Твой игровой порталик
+    </p>
+</header>
+
+<nav>
+    <a href="#">Главная</a>
+    <a href="#">Игры</a>
+    <a href="#">Новости</a>
+    <a href="#">Контакты</a>
+</nav>
+
+<main>
+    <h2>Популярные игры</h2>
+    <input
+    type="text"
+    id="search"
+    placeholder="найти игру..."
+    >
+    <button onclick="showAllGames()">Показать все игры</button>
+
+    <div class="games">
+
+        <div class="game">
+            <img src="images/cs2.jpg" alt="CS2">
+            <h3>Counter-Strike 2</h3>        
+            <p>Тактический шутер</p>
+            <a href="cs2.html">Подробнее</a>
+        </div>
+
+        <div class="game">
+            <img src="images/rust.jpg" alt="Rust">
+            <h3>Rust</h3>
+            <p>Выживание в открытом мире</p>
+            <a href="#">Подробнее</a>
+        </div>
+
+        <div class="game">
+            <img src="images/dota2.jpg" alt="Dota 2">
+            <h3>Dota 2</h3>
+             <p>Командная стратегия</p>
+             <a href="#">Подробнее</a>
+        </div>
+
+    </div>
+</main>
+<section class="news">
+    <h2>Последние новости</h2>
+
+    <div class="news-card">
+        <h3>Новости CS2</h3>
+        <p>Нововые обновления и события Counter-Strike 2</p>
+        <span>15 ноября 2016</span>
+    </div>
+    <div class="news-card">
+        <h3>Новости Rust</h3>
+        <p>Свежие новости мира Выживания</p>
+        <span>15 ноября 2016</span>
+    </div>
+    <div class="news-card">
+        <h3>Новости Dota 2</h3>
+        <p>Обновления и события Dota 2.</p>
+        <span>15 ноября 2026</span>
+    </div>
+</section>
+</body><script>
+    const search = document.getElementById("search");
+    const games = document.querySelectorAll(".game");
+
+    search.addEventListener("input", function() {
+        let value = search.value.toLowerCase();
+
+        games.forEach(function(game) {
+            let name = game.querySelector("h3").textContent.toLowerCase();
+
+            if (name.includes(value)) {
+                game.style.display = "block";
+            } else {
+                game.style.display = "none";
+            }
+        });
+    });
+    function showAllGames() {
+games.forEach(function(game) {
+game.style.display = "block";
+});
+
+search.value = "";
+    }
+
+</script>
+
+</html>
